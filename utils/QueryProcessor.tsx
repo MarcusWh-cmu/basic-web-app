@@ -15,5 +15,23 @@ export default function QueryProcessor(query: string): string {
     return "marcuswh";
   }
 
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = query.match(/-?\d+/g);
+    if (numbers && numbers.length > 0) {
+      const largest = Math.max(...numbers.map(Number));
+      return largest.toString();
+    }
+    return "";
+  }
+
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/-?\d+/g);
+    if (numbers && numbers.length > 0) {
+      const sum = numbers.map(Number).reduce((acc, curr) => acc + curr, 0);
+      return sum.toString();
+    }
+    return "";
+  }
+
   return "";
 }
